@@ -90,7 +90,7 @@ while flag == 1:
         break
 #start_game_end*****************************************************
 #-------------------------------------------------------------------------------
-#Получить ввод от игрока.
+#Получить ввод от игрока 1.
 while True:
     while flag == 0:
 
@@ -104,6 +104,25 @@ while True:
             play1 = int(play1)
             if  result_players[play1] == ' ':
                 result_players[play1] = 'X'
+                board_up(result_players)
+                break
+            else:
+                print(ind10,play_des4)
+        else:
+            print(ind10,play_des3)
+
+#Получить ввод от игрока 2
+    while flag == 0:
+        try:
+            play2 = check_input('0')
+        except KeyboardInterrupt:
+            print(f"{ind10}{play_des6}")
+            flag = 1
+            break
+        if play2 in result.values():
+            play2 = int(play2)
+            if  result_players[play2] == ' ':
+                result_players[play2] = '0'
                 board_up(result_players)
                 break
             else:
