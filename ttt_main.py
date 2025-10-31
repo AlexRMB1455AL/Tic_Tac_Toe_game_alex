@@ -96,13 +96,13 @@ def players_move_X_0(literal_tic_toc):
     flag = 0
     while flag == 0:
 
-        # try:
-        #     play1 = check_input(literal_tic_toc)
-        # except KeyboardInterrupt:
-        #     print(f"{ind10}{play_des6}")
-        #     flag = 1
-        #     break
-        if play1 in result.values():
+        try:
+            play_value = check_input(literal_tic_toc)
+        except KeyboardInterrupt:
+            print(f"{ind10}{play_des6}")
+            flag = 1
+            break
+        if play1 in result.values(play_value):
             if  result_players[play1] == ' ':
                 result_players[play1] = literal_tic_toc
                 board_up(result_players)
