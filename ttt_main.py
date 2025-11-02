@@ -88,7 +88,7 @@ while flag == 1:
     except KeyboardInterrupt:
         print(ind10, play_des7)
         break
-    
+
 #start_game_end*****************************************************
 #-------------------------------------------------------------------------------
 #players_move_go******************************************
@@ -97,35 +97,37 @@ def players_move_X_0(literal_tic_toc):
     while flag == 0:
 
         try:
-            play_value = check_input(literal_tic_toc)
+            play1 = check_input(literal_tic_toc)
         except KeyboardInterrupt:
             print(f"{ind10}{play_des6}")
             flag = 1
             break
-        if play1 in result.values(play_value):
-            if  result_players[play1] == ' ':
-                result_players[play1] = literal_tic_toc
+        if play1 in result.values():
+            play2 = int(play1)
+            if  result_players[play2] == ' ':
+                result_players[play2] = literal_tic_toc
                 board_up(result_players)
                 break
             else:
                 print(ind10,play_des4)
         else:
             print(ind10,play_des3)
-            
-        for win_check in win_results:
+            continue
+
+        for win_check in win_results():
             if (result_players[win_check[0]] == literal_tic_toc and
                 result_players[win_check[1]] == literal_tic_toc and
                 result_players[win_check[2]] == literal_tic_toc):
-                print(f'{ind10} {play_des8} {play_des1} - Победил!')
+                print(f'{ind10} {literal_tic_toc} - Победил!')
                 flag = 1
                 break
             if flag == 1:
                 break
             if ' ' not in result_players.values():
                 print(f'{ind10} Ничья!')
+                flag = 1
                 break
 #players_move_end*****************************************
 while True:
     players_move_X_0('X')
     players_move_X_0('0')
-    
