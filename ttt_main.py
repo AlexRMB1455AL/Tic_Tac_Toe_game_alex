@@ -56,8 +56,8 @@ def clear():
 #clear_terminal_end*********************************
 #input_go***********************************************************
 def check_input(marker):
-    number_int = input(f'{ind10}{play_des8},{play_des10} {marker}:')
-    return number_int
+    number = input(f'{ind10}{play_des8},{play_des10},{marker}:')
+    return number
 #input_end**********************************************************
 #update_board_go*********************************************
 def board_up(result_board):
@@ -75,59 +75,64 @@ board_place(result_play,ind4,ind0,play_des)
 flag = 1
 while flag == 1:
     try:
-        start_checkin = input(f'{ind10} {play_des5}')
+        start_checkin = input(f'{ind10},{play_des5}')
         print(ind0)
         if start_checkin == 'Y' or start_checkin == 'y':
             board_up(result_play)
             flag = 0
         elif start_checkin == 'E' or start_checkin == 'e':
             print(ind10, play_des6)
-            break
+            flag = 0
         else:
             print(ind10, play_des11)
     except KeyboardInterrupt:
+        flag = 0    
         print(ind10, play_des7)
-        break
 
+# def game_check(win_check):
+    # for win_check in win_results():
+    #             if (result_players[win_check[0]] == literal_tic_toc and
+    #                 result_players[win_check[1]] == literal_tic_toc and
+    #                 result_players[win_check[2]] == literal_tic_toc):
+    #                 print(f'{ind10} {literal_tic_toc} - Победил!')
+    #                 flag = 1
+    #                 break
+    #             if flag == 1:
+    #                 break
+    #             if ' ' not in result_players.values():
+    #                 print(f'{ind10} Ничья!')
+    #                 flag = 1
+    #                 break
 #start_game_end*****************************************************
 #-------------------------------------------------------------------------------
 #players_move_go******************************************
 def players_move_X_0(literal_tic_toc):
-    flag = 0
     while flag == 0:
 
         try:
-            play1 = check_input(literal_tic_toc)
+            play_str = check_input(literal_tic_toc)
         except KeyboardInterrupt:
             print(f"{ind10}{play_des6}")
-            flag = 1
             break
-        if play1 in result.values():
-            play2 = int(play1)
+        if play_str in result.values():
+            play2 = int(play_str)
             if  result_players[play2] == ' ':
                 result_players[play2] = literal_tic_toc
                 board_up(result_players)
-                break
+                write_res = True
+                return write_res
             else:
+                write_res = False
                 print(ind10,play_des4)
         else:
             print(ind10,play_des3)
             continue
 
-        for win_check in win_results():
-            if (result_players[win_check[0]] == literal_tic_toc and
-                result_players[win_check[1]] == literal_tic_toc and
-                result_players[win_check[2]] == literal_tic_toc):
-                print(f'{ind10} {literal_tic_toc} - Победил!')
-                flag = 1
-                break
-            if flag == 1:
-                break
-            if ' ' not in result_players.values():
-                print(f'{ind10} Ничья!')
-                flag = 1
-                break
+        
 #players_move_end*****************************************
+write_res = False 
 while True:
-    players_move_X_0('X')
-    players_move_X_0('0')
+    if write_res == False:
+        players_move_X_0('X')
+    else:   
+        players_move_X_0('0')
