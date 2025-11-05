@@ -140,16 +140,19 @@ def players_move_X_0(literal_tic_toc, flag):
                 checking_out = game_check(literal_tic_toc)
                 if checking_out == 1:
                     return 1
+                elif checking_out == 0:
+                    if ' ' not in result_players.values():
+                        print(f'{ind10} Ничья!')
+                        return 1                                              
             else:
                 print(ind10,play_des4)
+                break
         else:
             print(ind10,play_des3)
 
 
 #players_move_end
-def check_draw():
-    print(f'{ind10} Игра окончена')
-    result_players = result_play.copy()
+
 
 while True:
         if flag == 1:
