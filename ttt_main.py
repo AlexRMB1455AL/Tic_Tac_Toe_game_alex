@@ -102,25 +102,25 @@ while flag == 1:
         else:
             print(ind10, play_des11)
     except KeyboardInterrupt:
-        flag == 1
+        flag = 1
         print(ind10, play_des6)
         break
 
 
 def game_check(tic_toc):
+    flag = 0
     for win_check in win_results:
         if (result_players[win_check[0]] ==
             result_players[win_check[1]] ==
             result_players[win_check[2]] == tic_toc):
             print(f'{ind10} {tic_toc} - Победил!')
-            return 1
-        else:
-            return 0
+            flag = 1            
+    if flag == 1:
+        return 1
+    else:
+        return 0                
 
-#if ' ' not in result_players.values():
-#             print(f'{ind10} Ничья!')
-#             flag = 1
-#             break
+
 #start_game_end
 
 #players_move_go
@@ -154,12 +154,10 @@ def check_draw():
 while True:
         if flag == 1:
             print(f'{ind10} Игра окончена')
-            result_players = result_play.copy()
             break
         else:
             flag = players_move_X_0('X', 0)
             if flag == 1:
                 print(f'{ind10} Игра окончена')
-                result_players = result_play.copy()
                 break
             flag = players_move_X_0('0', 0)
