@@ -147,15 +147,19 @@ def players_move_X_0(literal_tic_toc, flag):
 
 
 #players_move_end
+def check_draw():
+    print(f'{ind10} Игра окончена')
+    result_players = result_play.copy()
 
 while True:
         if flag == 1:
             print(f'{ind10} Игра окончена')
+            result_players = result_play.copy()
             break
         else:
             flag = players_move_X_0('X', 0)
             if flag == 1:
                 print(f'{ind10} Игра окончена')
+                result_players = result_play.copy()
                 break
-
             flag = players_move_X_0('0', 0)
