@@ -10,13 +10,16 @@
 #Нам нужно отобразить доску (игровое поле)
 
 #map_go
+
 result = {1:'1',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9'} #const
 result_play = {1:' ',2:' ',3:' ',4:' ',5:' ',6:' ',7:' ',8:' ',9:' '} #const
 result_players = {1:' ',2:' ',3:' ',4:' ',5:' ',6:' ',7:' ',8:' ',9:' '} #change_inplay
 win_results = [(1, 2, 3), (4, 5, 6), (7, 8, 9), (1, 4, 7), (2, 5, 8), (3, 6, 9), (1, 5, 9), (3, 5, 7)]
+
 #map_end
 
 #description_go
+
 start_des = 'Описание ячеек ввода такое же как на клавиатуре справа'
 play_des =  'Игровая площадка с номерами ячеек в диапазоне 1-9'
 play_des1 = 'Игрок 1 использует "Х", а игрок 2 использует "0"'
@@ -30,15 +33,14 @@ play_des8 = 'Игрок 1'
 play_des9 = 'Игрок 2'
 play_des10 = 'Введите номер ячейки для'
 play_des11 = 'Символ не верный, повторите ввод'
+play_des12 = 'Игра окончена, хотите сыграть еще?'
 #indent
 ind10 =' '*10
 ind4 = ' '*4
 ind0 = ''
+
 #description_end
 
-
-
-#Function
 #start_board_go
 
 def board_place(run, indent='',description1='', description2='',description3=''):
@@ -54,6 +56,7 @@ def board_place(run, indent='',description1='', description2='',description3='')
 #start_board_end
 
 #clear_terminal_go
+
 import os
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -75,8 +78,6 @@ def board_up(result_board):
     board_place(result_board, ind4, play_des, play_des1, play_des2)
 
 #update_board_end
-
-#Function_end
 
 #start_play_go
 
@@ -105,7 +106,10 @@ while flag == 1:
         flag = 1
         print(ind10, play_des6)
         break
+    
+#start_game_end
 
+#game_check_go
 
 def game_check(tic_toc):
     flag = 0
@@ -114,16 +118,16 @@ def game_check(tic_toc):
             result_players[win_check[1]] ==
             result_players[win_check[2]] == tic_toc):
             print(f'{ind10} {tic_toc} - Победил!')
-            flag = 1            
+            flag = 1
     if flag == 1:
         return 1
     else:
-        return 0                
-
-
-#start_game_end
+        return 0
+    
+#game_check_end
 
 #players_move_go
+
 def players_move_X_0(literal_tic_toc, flag):
     while flag == 0:
         try:
@@ -143,24 +147,26 @@ def players_move_X_0(literal_tic_toc, flag):
                 elif checking_out == 0:
                     if ' ' not in result_players.values():
                         print(f'{ind10} Ничья!')
-                        return 1                                              
+                        return 1
             else:
                 print(ind10,play_des4)
                 break
         else:
             print(ind10,play_des3)
 
-
 #players_move_end
 
+#main_go
 
 while True:
         if flag == 1:
-            print(f'{ind10} Игра окончена')
+            print(f'{ind10} {play_des12}')
             break
         else:
             flag = players_move_X_0('X', 0)
             if flag == 1:
-                print(f'{ind10} Игра окончена')
+                print(f'{ind10} {play_des12}')
                 break
             flag = players_move_X_0('0', 0)
+
+#main_end
